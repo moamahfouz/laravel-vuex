@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -12,10 +13,16 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $categories = Category::latest()->get();
+
+        return response()->json([
+           "categories" => $categories
+        ],200);
     }
+
 
     /**
      * Store a newly created resource in storage.
